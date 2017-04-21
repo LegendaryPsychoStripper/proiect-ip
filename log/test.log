@@ -1,0 +1,61 @@
+  [1m[35m (247.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "proiectip_test"[0m
+  [1m[35m (863.7ms)[0m  [1m[35mCREATE DATABASE "proiectip_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (106.9ms)[0m  [1m[35mCREATE TABLE "events" ("id" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "title" character varying, "description" character varying, "seats" integer, "startdatetime" timestamp, "enddatetime" timestamp)[0m
+  [1m[35m (64.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (141.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (8.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170406115713)[0m
+  [1m[35m (10.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170406105924),
+(20170318101037);
+
+[0m
+  [1m[35m (104.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", 2017-04-06 14:43:00 UTC], ["updated_at", 2017-04-06 14:43:00 UTC]]
+  [1m[35m (9.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "events" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" DISABLE TRIGGER ALL[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "users"[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-04-06 14:43:00.958670', '2017-04-06 14:43:00.958670', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "id") VALUES ('2017-04-06 14:43:00.958670', '2017-04-06 14:43:00.958670', 298486374)[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "events"[0m
+  [1m[36mFixture Insert (0.7ms)[0m  [1m[32mINSERT INTO "events" ("created_at", "updated_at", "id") VALUES ('2017-04-06 14:43:00.979321', '2017-04-06 14:43:00.979321', 980190962)[0m
+  [1m[36mFixture Insert (0.5ms)[0m  [1m[32mINSERT INTO "events" ("created_at", "updated_at", "id") VALUES ('2017-04-06 14:43:00.979321', '2017-04-06 14:43:00.979321', 298486374)[0m
+  [1m[35m (25.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "events" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "ar_internal_metadata" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+-------------------------------------------
+EventsControllerTest: test_should_get_index
+-------------------------------------------
+Started GET "/events/index" for 127.0.0.1 at 2017-04-06 17:43:01 +0300
+Processing by EventsController#index as HTML
+Completed 406 Not Acceptable in 18ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+------------------------------------------
+EventsControllerTest: test_should_get_show
+------------------------------------------
+Started GET "/events/show" for 127.0.0.1 at 2017-04-06 17:43:01 +0300
+Processing by EventsController#show as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+Completed 404 Not Found in 15ms (ActiveRecord: 0.5ms)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+-----------------------------------------
+EventsControllerTest: test_should_get_new
+-----------------------------------------
+Started GET "/events/new" for 127.0.0.1 at 2017-04-06 17:43:01 +0300
+Processing by EventsController#new as HTML
+Completed 406 Not Acceptable in 16ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
