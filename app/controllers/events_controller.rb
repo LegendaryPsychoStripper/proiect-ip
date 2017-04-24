@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :login_required#, :except => :index
+  #before_filter :login_required#, :except => :index
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index

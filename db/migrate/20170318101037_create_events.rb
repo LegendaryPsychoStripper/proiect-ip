@@ -7,7 +7,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.datetime :start
       t.datetime :end
       t.string :color
-      t.string :ownerid
+      t.string :user_id
 
       t.timestamps
     end
