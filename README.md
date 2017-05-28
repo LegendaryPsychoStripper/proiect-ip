@@ -1,24 +1,3 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Promovarea-Evenimentelor
+Ruby on Rails, Bootstrap, PostgreSQL <br>
+Dupa ce instalati Ruby on Rails (https://gorails.com/setup/ubuntu/17.04) si PostgreSQL(https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-your-ruby-on-rails-application-on-ubuntu-14-04), puneti fisierele intr-un folder in cadrul caruia se va lucra asupra aplicatiei. Porniti terminalul si introduceti comenzile: cd folderul_proiectului, bundle install(ca sa se instaleze dependentele) si rake db:migrate(ca sa se ruleze migratiile pentru creerea bazei de date cu tabelele necesare). Se porneste serverul cu "rails s"(server).
