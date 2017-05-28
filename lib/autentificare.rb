@@ -4,7 +4,7 @@ module OmniAuth
   module Strategies
     class Autentificare < OmniAuth::Strategies::OAuth2
 
-      CUSTOM_PROVIDER_URL = 'http://fmi-autentificare.herokuapp.com'
+      CUSTOM_PROVIDER_URL = 'http://193.226.51.18:8888'
 
       option :client_options, {
         :site =>  CUSTOM_PROVIDER_URL,

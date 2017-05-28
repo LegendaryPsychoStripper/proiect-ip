@@ -41,6 +41,10 @@ gem 'omniauth-oauth2'
 
 gem 'koala'
 
+gem "paperclip", "~> 5.0.0"
+
+gem 'remotipart', '~> 1.2'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
