@@ -21,6 +21,8 @@ class UserSessionsController < ApplicationController
     user.is_management  = omniauth['extra']['management']
     user.is_admin = omniauth['extra']['admin']
     user.last_name  = omniauth['extra']['last_name']
+    #notificarile sunt active implicit
+    user.notification = 'true';
     user.save
 
     #p omniauth

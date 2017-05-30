@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  devise_for :testusers
   
+  root 'home#index'
+
   resources :events, :reservations
   
   get '/events/:id', to: 'events_controller#show'
 
+  get '/my_events', to: 'home#my_events'
   # omniauth
   match '/auth/:provider/callback', :to => 'user_sessions#create', :via => [:get]
   match '/auth/failure', :to => 'user_sessions#failure', :via => [:get]

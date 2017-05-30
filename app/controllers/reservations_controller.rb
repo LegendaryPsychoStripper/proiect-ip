@@ -1,20 +1,42 @@
 class ReservationsController < ApplicationController
+before_action :authenticate_testuser!
 
+	def new
+    	@reservation = Reservation.new
+ 	end
 
-def create
-		is_going = 1;
-		event_id = Event.event_id
-		user_id = current_user.id
+ 	def show
+ 	end
 
-		reservation = Reservation.create({
-			is_going: is_going, 
-			event_id: event_id,
-			user_id: user_id
-			})
+	def create
+		@reservation = Reservation.new(reservation_params)
+        @event = Event.find(@reservation.event_id)
+        @event.seats -=1
+        @event.update_attribute(:seats,@event.seats)
+		if @reservation.save
+			redirect_to :back
+		end
+
+	end
+
+	def destroy
+		@reservation = Reservation.find(params[:id])
+		@event = Event.find(@reservation.event_id)
+        @event.seats +=1
+        @event.update_attribute(:seats,@event.seats)
+        if @reservation.destroy
+        	redirect_to :back
+		end
+	end
+
+def is_going?
 end
 
-def destroy
-@reservation.destroy
+def is_interested?
 end
+private
+	def reservation_params
+      params.require(:reservation).permit(:user_id,:event_id,:is_going)
+    end
 
 end

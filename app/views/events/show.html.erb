@@ -1,26 +1,38 @@
-     
+
 <p class="h1"><%= @event.title %></p>
 <br>
-<%= @event.avatar %>
+<p class="h6">Creat de <%= @event.user_id %></p><!--to do: include cu user ca sa aflu numele-->
+<%if @event.avatar.present?%>
+<%= image_tag @event.avatar.url %>
+<%end%>
 <pre>
 <%= @event.description %>
 </pre>
 <br>
+<% if @event.seats != 0%>
 <p class="h4">Locuri disponibile:
 <%= @event.seats %>
+<%else%>
+<p class="h4">Nu mai sunt locuri.</p>
+<%end%>
+
 </p>
-  
-<%=link_to 'Rezerva loc', request.original_url, class: 'btn btn-default'%>
+<% if @reservation.new_record? && @event.seats != 0%>
+	<%= simple_form_for @reservation do |f| %>
+	<%= f.hidden_field :user_id, value: current_testuser.id%>
+	<%= f.hidden_field :event_id, value: @event.id%>
+	<%= f.hidden_field :is_going, value: 'true'%>
+	<%= f.button :submit, "Rezerva loc",method: :post, class: 'btn btn-default'%>
+	<%end%>
+<%end%>
+	<%= link_to "Elibereaza loc", @reservation, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' },remote: true unless @reservation.new_record? %>
+
+
+<%=link_to 'Interesat', request.original_url, class: 'btn btn-default'%>
 <br>
  <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9&appId=1338940106235191";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+
 
 <!-- Your share button code -->
 <div class="fb-share-button" data-href=<%=request.original_url%> data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Share</a></div>  

@@ -1,0 +1,15 @@
+<ul class="list-group">
+	<% @events.order(:start).each do |event| %>
+
+		<li class="list-group-item">
+			
+			<p class="h3"><%= link_to event.title, event_path(event.id)%></p>
+			<%if event.avatar.present?%>
+			<%= image_tag event.avatar.url(:custom) %>
+			<%end%>	
+			<div class="text-center"><%=event.start.strftime("%d-%B")%></div>
+			<div class="text-right"><%=event.start.strftime("%H:%M")%>-<%=event.end.strftime("%H:%M")%></div>
+		</li>
+
+	<% end %>
+</ul>
