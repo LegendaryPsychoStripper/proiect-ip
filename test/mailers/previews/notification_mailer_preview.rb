@@ -4,4 +4,7 @@ class NotificationMailerPreview < ActionMailer::Preview
     NotificationMailer.notification_on_create(Testuser.first)
   end
 
+  def notification_on_reservation_preview
+    NotificationMailer.notification_on_reservation(Testuser.first)
+  end
 end

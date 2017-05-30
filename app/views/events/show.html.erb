@@ -1,7 +1,7 @@
 
 <p class="h1"><%= @event.title %></p>
 <br>
-<p class="h6">Creat de <%= @event.user_id %></p><!--to do: include cu user ca sa aflu numele-->
+<p class="h6">Creat de <%= @user.email %></p><!--to do: include cu user ca sa aflu numele-->
 <%if @event.avatar.present?%>
 <%= image_tag @event.avatar.url %>
 <%end%>
@@ -28,8 +28,7 @@
 	<%= link_to "Elibereaza loc", @reservation, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' },remote: true unless @reservation.new_record? %>
 
 
-<%=link_to 'Interesat', request.original_url, class: 'btn btn-default'%>
-<br>
+<!--<%=link_to 'Interesat', request.original_url, class: 'btn btn-default'%>-->
  <!-- Load Facebook SDK for JavaScript -->
 <div id="fb-root"></div>
 

@@ -14,6 +14,7 @@ before_action :authenticate_testuser!
         @event.seats -=1
         @event.update_attribute(:seats,@event.seats)
 		if @reservation.save
+			NotificationMailer.notification_on_reservation(@reservation).deliver_later
 			redirect_to :back
 		end
 

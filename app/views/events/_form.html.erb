@@ -1,4 +1,10 @@
-<%= simple_form_for @event, remote: true do |f| %>
+ <% if not @event.new_record? and @event.user_id.to_f != current_testuser.id.to_f %>   
+        <%= link_to 'Show event', 
+                event_path(event.id),
+                method: :get,
+                class: 'btn btn-default' %>
+<%else%>
+ <%= simple_form_for @event, remote: true do |f| %>
   <div class="form-inputs">
     <%= f.input :title %>
     <%if @event.new_record?%>
@@ -22,7 +28,7 @@
 
   </div>
 
-  <div class="form-actions">
+    <div class="form-actions">
     <%= f.button :submit %>
     <%= link_to 'Delete', 
                 event, 
@@ -30,12 +36,13 @@
                 class: 'btn btn-danger', 
                 data: { confirm: 'Are you sure?' }, 
                 remote: true unless @event.new_record? %>
-<% if event.id != nil%>
+    <% if event.id != nil%>
     <%= link_to 'Show event', 
                 event_path(event.id),
                 method: :get,
                 class: 'btn btn-default' %>
-<%end%>
-  </div>
+    <%end%>
+    </div>
   
-<% end %>
+    <%end%>
+<%end%>

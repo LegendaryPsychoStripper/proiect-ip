@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @user = Testuser.find(@event.user_id)
     @reservation = Reservation.find_by(user_id: current_testuser.id, event_id: @event.id)
     if @reservation == nil 
       @reservation = Reservation.new
